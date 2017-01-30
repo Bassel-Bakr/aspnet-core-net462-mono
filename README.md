@@ -40,6 +40,24 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 A workaround is described here: <https://github.com/dotnet/sdk/issues/335#issuecomment-271186591>.
 This workaround depends on a private nuget package described here: <https://github.com/dotnet/sdk/issues/335#issuecomment-257457331>.
 
+I added this to my `.csproj` files:
+
+```
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    ...
+    <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+    <FrameworkPathOverride>$(NuGetPackageFolders)Microsoft.TargetingPack.NETFramework.v4.6.2\1.0.1\lib\net462\</FrameworkPathOverride>
+  </PropertyGroup>
+
+  <ItemGroup>
+    ...
+    <PackageReference Include="Microsoft.TargetingPack.NETFramework.v4.6.2" Version="1.0.1" ExcludeAssets="All" PrivateAssets="All" />
+  </ItemGroup>
+</Project>
+
+```
+
 With the build out of the way, we run into the 1st run-time issue:
 
 ```
