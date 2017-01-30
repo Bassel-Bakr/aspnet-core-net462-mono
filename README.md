@@ -2,6 +2,12 @@
 Example of getting an ASP.NET Core 1.1.0 app using the full .NET Framework 4.6.2 
 with the Mono runtime on *nix systems.
 
+For this example, I used the following stack:
+
+* dotnet cli: 1.0.0-rc4-004689
+* Mono: 4.6.2
+* macOS Sierra: 10.12.3
+
 Currently, the full .NET Framework is not supported on non-windows systems.
 However, there are workarounds available to get the Mono runtime to work with ASP.NET Core apps.
 
