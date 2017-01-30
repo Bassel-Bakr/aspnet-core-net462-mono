@@ -13,6 +13,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.0.0" />
     <PackageReference Include="Microsoft.TargetingPack.NETFramework.v4.6.2" Version="1.0.1" ExcludeAssets="All" PrivateAssets="All" />
+    <PackageReference Include="System.Native" Version="1.0.0-rc4-004707" />
   </ItemGroup>
 
   <ItemGroup>

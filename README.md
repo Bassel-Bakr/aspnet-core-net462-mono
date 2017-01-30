@@ -97,11 +97,15 @@ One workaround is to build your own version of `System.Native` that has the requ
 [This](https://github.com/Tragetaschen/libSystem.Native) is a version of `System.Native` that is a very lightweight solution: 
 it only has the required `GetUnixName` function.
 
-My workaround was to use the `System.Native` library from the dotnet tooling. However, the provided library only works with 64-bits:
+My workaround was to use the `System.Native` library from the dotnet tooling.
+I've created a [nuget package](https://www.nuget.org/packages/System.Native/) that just re-packages the `System.Native` libs for all the non-windows platforms.
+This goes into `Web.csproj`:
 
 ```
-ln -s /usr/local/share/dotnet/shared/Microsoft.NETCore.App/1.1.0/System.Native.dylib bin/Debug/net462/libSystem.Native.dylib
-mono --arch=64 --debug bin/Debug/net462/Web.exe
+  <ItemGroup>
+    ...
+    <PackageReference Include="System.Native" Version="1.0.0-rc4-004707" />
+  </ItemGroup>
 ```
 
 The last issue is related to the reference assemblies again. 
@@ -122,7 +126,8 @@ System.InvalidOperationException: Can not find reference assembly 'Microsoft.CSh
   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware+<Invoke>d__6.MoveNext () [0x00080] in <54abb6e5c34d41e5b18eb3ce35092c5b>:0
 ```
 
-The `ReferenceAssemblyPathResolver` will actually use the `DOTNET_REFERENCE_ASSEMBLIES_PATH` environment variable, so we just need to do this:
+The `ReferenceAssemblyPathResolver` will actually use the `DOTNET_REFERENCE_ASSEMBLIES_PATH` environment variable, 
+so we just need to do this:
 
 ```
 export DOTNET_REFERENCE_ASSEMBLIES_PATH=/Library/Frameworks/Mono.framework/Versions/Current/lib/mono/4.5
