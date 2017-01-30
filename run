@@ -1,0 +1,12 @@
+#!/bin/bash
+
+export DOTNET_REFERENCE_ASSEMBLIES_PATH=/Library/Frameworks/Mono.framework/Versions/Current/lib/mono/4.5
+
+cd Web
+
+dotnet restore -r osx
+dotnet build -r osx
+
+ln -sf /usr/local/share/dotnet/shared/Microsoft.NETCore.App/1.1.0/System.Native.dylib bin/Debug/net462/libSystem.Native.dylib
+
+mono --arch=64 --debug bin/Debug/net462/Web.exe
