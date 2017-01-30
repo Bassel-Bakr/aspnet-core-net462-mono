@@ -40,6 +40,17 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 A workaround is described here: <https://github.com/dotnet/sdk/issues/335#issuecomment-271186591>.
 This workaround depends on a private nuget package described here: <https://github.com/dotnet/sdk/issues/335#issuecomment-257457331>.
 
+This `NuGet.config` file is required to register the private dotnet-core feed:
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="dotnet-core" value="https://dotnet.myget.org/F/dotnet-core/api/v3/index.json"/>
+  </packageSources>
+</configuration>
+```
+
 I added this to my `.csproj` files:
 
 ```
